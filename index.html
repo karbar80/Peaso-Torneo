@@ -95,7 +95,9 @@ header{border-bottom:1px solid #ffffff16;background:#07131fdc;backdrop-filter:bl
 <footer><div class="wrap footer"><span>© Peaso Torneo · Portal no oficial de la competició</span><span>Fet per a la comunitat · Dades gestionades a Google Sheets</span></div></footer>
 <script>
 const TSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTgvCcSVvdTJw0akyj8tPJSpziBLCQq7sqzKXPbwa-L_ZDQCHFZsMdOGyTK9YC5fXHw2U-feQ2SrPqx/pub?output=tsv";
-let allRows = [], headers = [], loadedFrom = "";
+// Pestanya específica del rànquing històric de punts (gid=866890586).
+const RANKING_TSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTgvCcSVvdTJw0akyj8tPJSpziBLCQq7sqzKXPbwa-L_ZDQCHFZsMdOGyTK9YC5fXHw2U-feQ2SrPqx/pub?gid=866890586&single=true&output=tsv";
+let allRows = [], headers = [], loadedFrom = "", rankingRows = [];
 const $ = s => document.querySelector(s);
 function escapeHtml(v){return String(v??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));}
 function parseDelimited(text, delim){return text.replace(/^\uFEFF/,"").trim().split(/\r?\n/).filter(x=>x.trim()!=="").map(line=>line.split(delim).map(x=>x.trim()));}
@@ -115,11 +117,25 @@ function setData(text,source){
  $("#rawTable").innerHTML='<div class="card"><div class="card-title"><h3>Vista prèvia de les dades importades</h3><small>'+Math.max(0,allRows.length-1)+' files</small></div><div id="rawInner" class="table-wrap"></div></div>';
  renderTable(allRows,"#rawInner");
  // Initial generic display until exact sheet structure is mapped
- renderTable(allRows,"#homePoints");
- renderTable(allRows,"#pointsTable",$("#pointSearch")?.value||"");
+ // El rànquing històric es carrega per separat des de la pestanya correcta.
  renderTable(allRows,"#participationsTable",$("#participationSearch")?.value||"");
- setStatus("#pointStatus",`${Math.max(0,allRows.length-1)} files importades · estructura pendent de configurar`);
  setStatus("#participationStatus",`${Math.max(0,allRows.length-1)} files importades · estructura pendent de configurar`);
+}
+async function loadRankingSheet(){
+ try{
+  const response=await fetch(RANKING_TSV_URL,{cache:"no-store"});
+  if(!response.ok)throw new Error("HTTP "+response.status);
+  const text=await response.text();
+  if(!text.trim()||text.includes("<!DOCTYPE html>"))throw new Error("La resposta no sembla un TSV");
+  rankingRows=parseDelimited(text,chooseDelimiter(text));
+  renderTable(rankingRows,"#homePoints");
+  renderTable(rankingRows,"#pointsTable",$("#pointSearch")?.value||"");
+  setStatus("#pointStatus",`${Math.max(0,rankingRows.length-1)} files del rànquing històric · pestanya correcta`);
+ }catch(e){
+  setStatus("#pointStatus","No s'ha pogut carregar automàticament la pestanya del rànquing");
+  const msg='<div class="empty">No s’ha pogut llegir automàticament aquesta pestanya. <a href="https://docs.google.com/spreadsheets/d/e/2PACX-1vTgvCcSVvdTJw0akyj8tPJSpziBLCQq7sqzKXPbwa-L_ZDQCHFZsMdOGyTK9YC5fXHw2U-feQ2SrPqx/pubhtml?gid=866890586&single=true" target="_blank" rel="noopener" style="color:var(--green);text-decoration:underline">Obre el rànquing original</a>.</div>';
+  $("#homePoints").innerHTML=msg; $("#pointsTable").innerHTML=msg;
+ }
 }
 async function loadSheet(){
  $("#connectionBadge").textContent="Connectant…";$("#connectionMessage").textContent="Intentant llegir el TSV publicat de Google Sheets…";
@@ -137,10 +153,11 @@ async function loadSheet(){
 document.querySelectorAll("[data-tab]").forEach(b=>b.addEventListener("click",()=>showTab(b.dataset.tab)));
 document.querySelectorAll("[data-jump]").forEach(b=>b.addEventListener("click",()=>showTab(b.dataset.jump)));
 function showTab(tab){document.querySelectorAll(".data-panel").forEach(p=>p.classList.remove("active"));$("#panel-"+tab)?.classList.add("active");document.querySelectorAll("[data-tab]").forEach(b=>b.classList.toggle("active",b.dataset.tab===tab));window.scrollTo({top:0,behavior:"smooth"});}
-$("#pointSearch").addEventListener("input",e=>{if(allRows.length)renderTable(allRows,"#pointsTable",e.target.value)});
+$("#pointSearch").addEventListener("input",e=>{if(rankingRows.length)renderTable(rankingRows,"#pointsTable",e.target.value)});
 $("#participationSearch").addEventListener("input",e=>{if(allRows.length)renderTable(allRows,"#participationsTable",e.target.value)});
-$("#reloadBtn").addEventListener("click",loadSheet);
+$("#reloadBtn").addEventListener("click",()=>{loadSheet();loadRankingSheet()});
 $("#fileInput").addEventListener("change",async e=>{const f=e.target.files?.[0];if(f)setData(await f.text(),f.name)});
 loadSheet();
+loadRankingSheet();
 </script>
 </body></html>
