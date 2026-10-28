@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="ca">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#07131f">
+<title>Peaso Torneo · Portal oficial</title>
+<style>
+:root{--bg:#07131f;--panel:#101f2d;--panel2:#142838;--line:#263b4d;--text:#f4f7fb;--muted:#9eb0c0;--green:#a7f36b;--green2:#5dc46b;--gold:#f5c451;--red:#ff7b72}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:radial-gradient(ellipse at 80% -10%,#1a3d35 0,transparent 35%),var(--bg);color:var(--text);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}a{color:inherit;text-decoration:none}.wrap{width:min(1160px,calc(100% - 36px));margin:auto}
+header{border-bottom:1px solid #ffffff16;background:#07131fdc;backdrop-filter:blur(12px);position:sticky;top:0;z-index:5}.nav{display:flex;align-items:center;justify-content:space-between;gap:20px;min-height:76px}.brand{display:flex;align-items:center;gap:12px;font-weight:900;letter-spacing:.05em}.crest{width:43px;height:48px;display:grid;place-items:center;clip-path:polygon(8% 0,92% 0,100% 72%,50% 100%,0 72%);background:linear-gradient(150deg,var(--green),#3d9c61);color:#06131a;font-weight:1000;font-size:21px}.brand small{display:block;color:var(--muted);font-size:10px;letter-spacing:.22em;margin-top:2px}.navlinks{display:flex;gap:5px;flex-wrap:wrap}.navlinks button,.mobilemenu{background:transparent;border:0;color:var(--muted);padding:11px 13px;border-radius:9px;font:inherit;font-size:13px;cursor:pointer}.navlinks button.active,.navlinks button:hover{background:#ffffff10;color:var(--green)}.mobilemenu{display:none}
+.hero{padding:58px 0 34px;display:grid;grid-template-columns:1.2fr .8fr;gap:30px;align-items:center}.eyebrow{color:var(--green);font-size:11px;font-weight:900;letter-spacing:.22em;text-transform:uppercase;display:flex;align-items:center;gap:10px}.eyebrow:before{content:"";height:2px;width:28px;background:var(--green)}h1{font-size:clamp(42px,6vw,76px);line-height:.95;letter-spacing:-.055em;margin:17px 0 20px;font-weight:950}h1 span{color:var(--green)}.hero p{color:#bdcbd6;line-height:1.7;max-width:560px;font-size:16px}.hero-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:25px}.btn{border:1px solid var(--line);border-radius:10px;padding:12px 16px;font-weight:800;font-size:13px;cursor:pointer;background:#ffffff08;color:var(--text)}.btn.primary{background:var(--green);color:#09151d;border-color:var(--green)}.btn:hover{transform:translateY(-1px)}.hero-visual{position:relative;min-height:300px;border-radius:22px;overflow:hidden;border:1px solid #ffffff1c;background:linear-gradient(145deg,#1d4939,#0c1e2a 58%,#07131f);display:flex;align-items:center;justify-content:center}.pitch{position:absolute;inset:30px 22px 18px;border:1px solid #b8ff8d6b;border-radius:8px;transform:perspective(500px) rotateX(13deg);background:repeating-linear-gradient(0deg,#68b86c12 0,#68b86c12 28px,#0d302a44 28px,#0d302a44 56px)}.pitch:before{content:"";position:absolute;inset:0 50%;border-left:1px solid #b8ff8d66}.pitch:after{content:"";position:absolute;width:105px;height:105px;border:1px solid #b8ff8d66;border-radius:50%;left:calc(50% - 52px);top:calc(50% - 52px)}.ball{z-index:1;font-size:100px;filter:drop-shadow(0 16px 20px #0008);transform:rotate(-15deg)}.hero-badge{position:absolute;bottom:18px;left:18px;background:#07131fe8;border:1px solid #ffffff25;border-radius:12px;padding:12px 15px}.hero-badge strong{display:block;font-size:12px}.hero-badge span{font-size:11px;color:var(--muted)}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:0 0 42px}.stat{background:linear-gradient(145deg,#122536,#0c1b28);border:1px solid var(--line);border-radius:14px;padding:17px}.stat span{display:block;color:var(--muted);font-size:11px;text-transform:uppercase;letter-spacing:.1em}.stat strong{display:block;font-size:28px;margin-top:7px;letter-spacing:-.04em}.stat em{font-style:normal;color:var(--green);font-size:11px}
+.section{padding:18px 0 54px}.section-head{display:flex;align-items:end;justify-content:space-between;gap:15px;margin-bottom:20px}.section-head h2{font-size:28px;letter-spacing:-.04em;margin:7px 0 0}.section-head p{color:var(--muted);margin:8px 0 0;font-size:13px}.pill{display:inline-flex;align-items:center;gap:7px;border:1px solid var(--line);background:#ffffff06;border-radius:999px;padding:7px 11px;color:var(--muted);font-size:11px}.dot{width:7px;height:7px;border-radius:50%;background:var(--green);box-shadow:0 0 12px #a7f36b88}
+.layout{display:grid;grid-template-columns:1.25fr .75fr;gap:16px}.card{background:linear-gradient(145deg,#122536,#0b1a27);border:1px solid var(--line);border-radius:16px;overflow:hidden}.card-title{padding:17px 18px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;gap:10px}.card-title h3{font-size:14px;margin:0}.card-title small{color:var(--muted);font-size:11px}.table-wrap{overflow:auto}table{width:100%;border-collapse:collapse;font-size:12px;white-space:nowrap}th{text-align:left;color:var(--muted);font-weight:700;font-size:10px;text-transform:uppercase;letter-spacing:.09em;background:#ffffff04}td,th{padding:13px 15px;border-bottom:1px solid #ffffff0d}tbody tr:hover{background:#ffffff06}tbody tr:last-child td{border-bottom:0}.rank{color:var(--muted);width:34px}.team{font-weight:750}.points{color:var(--green);font-weight:900}.toprow .rank{color:var(--gold)}.mini-list{padding:4px 18px}.mini-row{display:flex;align-items:center;gap:12px;padding:14px 0;border-bottom:1px solid #ffffff0d}.mini-row:last-child{border-bottom:0}.mini-icon{width:34px;height:34px;display:grid;place-items:center;border-radius:10px;background:#a7f36b13;color:var(--green);font-size:16px}.mini-row strong{font-size:12px;display:block}.mini-row small{font-size:11px;color:var(--muted)}.mini-row b{margin-left:auto;color:var(--green);font-size:12px}
+.group-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}.group-card{background:linear-gradient(145deg,#122536,#0b1a27);border:1px solid var(--line);border-radius:15px;overflow:hidden}.group-card .card-title{padding:14px 16px}.group-letter{color:var(--green);font-weight:900;font-size:12px;letter-spacing:.1em}.empty{padding:28px 18px;color:var(--muted);font-size:13px;line-height:1.6}.data-panel{display:none}.data-panel.active{display:block}.hint{font-size:12px;color:var(--muted);line-height:1.6}.toolbar{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin:14px 0}.search{background:#0a1925;border:1px solid var(--line);border-radius:10px;padding:11px 13px;color:var(--text);min-width:220px;outline:none}.search:focus{border-color:var(--green)}.status{font-size:11px;color:var(--muted)}.notice{padding:13px 15px;background:#a7f36b0c;border:1px solid #a7f36b35;border-radius:12px;color:#d7e9dc;font-size:12px;line-height:1.6;margin-bottom:18px}.footer{border-top:1px solid var(--line);padding:26px 0 36px;color:var(--muted);font-size:11px;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}.points-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.point-card{border:1px solid var(--line);border-radius:14px;padding:17px;background:#ffffff04}.point-card strong{font-size:25px;color:var(--green);display:block}.point-card span{font-size:12px;color:var(--muted)}
+@media(max-width:780px){.hero{grid-template-columns:1fr;padding-top:38px}.hero-visual{min-height:220px}.stats{grid-template-columns:repeat(2,1fr)}.layout{grid-template-columns:1fr}.nav{align-items:flex-start;padding:13px 0;flex-wrap:wrap}.navlinks{width:100%;overflow:auto;flex-wrap:nowrap}.navlinks button{white-space:nowrap}.group-grid{grid-template-columns:1fr}.points-grid{grid-template-columns:repeat(2,1fr)}.section-head{align-items:start;flex-direction:column}}
+</style>
+</head>
+<body>
+<header><div class="wrap nav">
+  <a class="brand" href="#" aria-label="Peaso Torneo inici"><span class="crest">P</span><span>PEASO TORNEO<small>COMPETICIÓ · COMUNITAT · FUTBOL</small></span></a>
+  <nav class="navlinks" aria-label="Navegació">
+    <button class="active" data-tab="inicio">Inici</button><button data-tab="grupos">Fase de grups</button><button data-tab="eliminatorias">Eliminatòries</button><button data-tab="puntos">Rànquing de punts</button><button data-tab="participaciones">Participacions</button><button data-tab="datos">Dades</button>
+  </nav>
+</div></header>
+<main class="wrap">
+<section class="hero">
+ <div><div class="eyebrow">EL TORNEIG DE LA COMUNITAT</div><h1>PEASO<br><span>TORNEO.</span></h1>
+ <p>16 equips. 4 grups. Un sol campió. Segueix la competició, consulta els històrics i descobreix qui domina el Peaso Torneo.</p>
+ <div class="hero-actions"><button class="btn primary" data-jump="grupos">Veure els grups ↗</button><button class="btn" data-jump="puntos">Rànquing històric</button></div></div>
+ <div class="hero-visual" aria-label="Il·lustració d'un camp de futbol"><div class="pitch"></div><div class="ball">⚽</div><div class="hero-badge"><strong>16 EQUIPS · 1 CAMPIÓ</strong><span>La competició es viu aquí</span></div></div>
+</section>
+<div class="stats">
+ <div class="stat"><span>Equips per edició</span><strong>16</strong><em>4 grups de 4</em></div>
+ <div class="stat"><span>Classificats</span><strong>8</strong><em>2 primers de cada grup</em></div>
+ <div class="stat"><span>Partits eliminatoris</span><strong>7</strong><em>Quarts · semis · final</em></div>
+ <div class="stat"><span>Premi al campió</span><strong>20 <small style="font-size:14px">pts</small></strong><em>Rànquing històric</em></div>
+</div>
+
+<section id="panel-inicio" class="data-panel active section">
+ <div class="section-head"><div><div class="eyebrow">CENTRE DE LA COMPETICIÓ</div><h2>El torneig, d'un cop d'ull</h2><p>Resultats, classificacions i històrics en un sol lloc.</p></div><span class="pill"><span class="dot"></span> Portal del torneig</span></div>
+ <div class="layout">
+  <div class="card"><div class="card-title"><h3>Rànquing històric de punts</h3><small>Top de participants</small></div><div id="homePoints" class="table-wrap"><div class="empty">Carregant les dades del torneig…</div></div></div>
+  <div class="card"><div class="card-title"><h3>Format de competició</h3><small>16 equips</small></div><div class="mini-list">
+   <div class="mini-row"><div class="mini-icon">▦</div><div><strong>Fase de grups</strong><small>4 grups de 4 equips</small></div></div>
+   <div class="mini-row"><div class="mini-icon">↗</div><div><strong>Quarts de final</strong><small>Els 2 primers de cada grup</small></div></div>
+   <div class="mini-row"><div class="mini-icon">◇</div><div><strong>Semifinals</strong><small>4 equips continuen</small></div></div>
+   <div class="mini-row"><div class="mini-icon">🏆</div><div><strong>La final</strong><small>Un partit decideix el campió</small></div></div>
+  </div></div>
+ </div>
+ <div style="height:16px"></div>
+ <div class="card"><div class="card-title"><h3>Com es reparteixen els punts?</h3><small>Puntuació per edició</small></div><div class="points-grid" style="padding:15px">
+  <div class="point-card"><strong>20</strong><span>Campió</span></div><div class="point-card"><strong>14</strong><span>Finalista</span></div><div class="point-card"><strong>9</strong><span>Eliminat a semifinals</span></div><div class="point-card"><strong>6</strong><span>Eliminat a quarts</span></div><div class="point-card"><strong>3</strong><span>3r de la lligueta</span></div><div class="point-card"><strong>1</strong><span>4t de la lligueta</span></div>
+ </div></div>
+</section>
+
+<section id="panel-grupos" class="data-panel section">
+ <div class="section-head"><div><div class="eyebrow">PRIMERA FASE</div><h2>Fase de grups</h2><p>Quatre lliguetes. Els dos primers de cada grup passen a quarts.</p></div><span class="pill">4 × 4 equips</span></div>
+ <div class="notice">Les classificacions es connectaran amb les columnes corresponents del teu Google Sheets. Aquesta primera versió encara necessita confirmar com estan organitzades les dades del full.</div>
+ <div class="group-grid" id="groups"><div class="group-card"><div class="card-title"><h3>Grup A</h3><span class="group-letter">A</span></div><div class="empty">Les dades del grup apareixeran aquí quan configurem el full.</div></div><div class="group-card"><div class="card-title"><h3>Grup B</h3><span class="group-letter">B</span></div><div class="empty">Les dades del grup apareixeran aquí quan configurem el full.</div></div><div class="group-card"><div class="card-title"><h3>Grup C</h3><span class="group-letter">C</span></div><div class="empty">Les dades del grup apareixeran aquí quan configurem el full.</div></div><div class="group-card"><div class="card-title"><h3>Grup D</h3><span class="group-letter">D</span></div><div class="empty">Les dades del grup apareixeran aquí quan configurem el full.</div></div></div>
+</section>
+
+<section id="panel-eliminatorias" class="data-panel section">
+ <div class="section-head"><div><div class="eyebrow">FASE FINAL</div><h2>Quadre eliminatori</h2><p>Un sol partit a cada ronda, fins a conèixer el campió.</p></div></div>
+ <div class="group-grid">
+  <div class="card"><div class="card-title"><h3>Quarts de final</h3><small>8 equips</small></div><div class="empty">QF1 · 1r Grup A vs 2n Grup B<br>QF2 · 1r Grup B vs 2n Grup A<br>QF3 · 1r Grup C vs 2n Grup D<br>QF4 · 1r Grup D vs 2n Grup C</div></div>
+  <div class="card"><div class="card-title"><h3>Semifinals</h3><small>4 equips</small></div><div class="empty">Semifinal 1 · Guanyador QF1 vs Guanyador QF3<br><br>Semifinal 2 · Guanyador QF2 vs Guanyador QF4</div></div>
+  <div class="card"><div class="card-title"><h3>Final</h3><small>2 equips</small></div><div class="empty">Guanyador semifinal 1 vs Guanyador semifinal 2<br><br><strong style="color:var(--gold)">🏆 El campió del Peaso Torneo</strong></div></div>
+  <div class="card"><div class="card-title"><h3>Puntuació final</h3><small>Per edició</small></div><div class="mini-list"><div class="mini-row"><strong>Campió</strong><b>20 pts</b></div><div class="mini-row"><strong>Finalista</strong><b>14 pts</b></div><div class="mini-row"><strong>Semifinals</strong><b>9 pts</b></div><div class="mini-row"><strong>Quarts</strong><b>6 pts</b></div></div></div>
+ </div>
+</section>
+
+<section id="panel-puntos" class="data-panel section">
+ <div class="section-head"><div><div class="eyebrow">TOTS ELS TORNEJOS</div><h2>Rànquing històric de punts</h2><p>Punts acumulats per mànager al llarg de les edicions.</p></div><span class="pill">Classificació acumulada</span></div>
+ <div class="toolbar"><input id="pointSearch" class="search" placeholder="Cerca un equip o mànager…" aria-label="Cerca al rànquing"><span id="pointStatus" class="status">Esperant dades del full…</span></div>
+ <div class="card"><div id="pointsTable" class="table-wrap"><div class="empty">No s'han carregat encara les columnes del rànquing. Pots importar el TSV amb el botó de la secció Dades.</div></div></div>
+</section>
+
+<section id="panel-participaciones" class="data-panel section">
+ <div class="section-head"><div><div class="eyebrow">QUI HA JUGAT?</div><h2>Històric de participacions</h2><p>Un registre separat del rànquing de punts: els equips poden variar a cada edició.</p></div></div>
+ <div class="toolbar"><input id="participationSearch" class="search" placeholder="Cerca equip, mànager o edició…" aria-label="Cerca participacions"><span id="participationStatus" class="status">Esperant dades del full…</span></div>
+ <div class="card"><div id="participationsTable" class="table-wrap"><div class="empty">Quan confirmem el format de les dades, aquí es mostrarà l'històric de participacions.</div></div></div>
+</section>
+
+<section id="panel-datos" class="data-panel section">
+ <div class="section-head"><div><div class="eyebrow">CONNEXIÓ AMB GOOGLE SHEETS</div><h2>Estat de les dades</h2><p>La web intenta llegir el full publicat. Si el navegador ho bloqueja, pots importar un TSV descarregat del full.</p></div></div>
+ <div class="notice"><strong>Important:</strong> l'enllaç actual és un TSV publicat. Sovint aquest enllaç representa una sola pestanya del document; per connectar el rànquing, les participacions i els grups pot caldre publicar també les altres pestanyes o utilitzar un enllaç CSV/TSV per a cadascuna.</div>
+ <div class="card"><div class="card-title"><h3>Font de dades</h3><span id="connectionBadge" class="pill">Comprovant…</span></div><div class="empty" id="connectionMessage">Intentant llegir les dades publicades de Google Sheets…</div>
+ <div style="padding:0 18px 18px;display:flex;gap:10px;flex-wrap:wrap"><button id="reloadBtn" class="btn primary">Tornar a carregar</button><label class="btn" for="fileInput">Importar fitxer TSV/CSV</label><input id="fileInput" type="file" accept=".tsv,.csv,.txt" style="display:none"></div></div>
+ <p class="hint" style="margin-top:14px">La importació manual serveix per provar la web. Perquè s'actualitzi sola, necessitem que les pestanyes que volem mostrar estiguin publicades i que el navegador pugui llegir-ne les dades.</p>
+ <div id="rawTable" style="margin-top:16px"></div>
+</section>
+</main>
+<footer><div class="wrap footer"><span>© Peaso Torneo · Portal no oficial de la competició</span><span>Fet per a la comunitat · Dades gestionades a Google Sheets</span></div></footer>
+<script>
+const TSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTgvCcSVvdTJw0akyj8tPJSpziBLCQq7sqzKXPbwa-L_ZDQCHFZsMdOGyTK9YC5fXHw2U-feQ2SrPqx/pub?output=tsv";
+let allRows = [], headers = [], loadedFrom = "";
+const $ = s => document.querySelector(s);
+function escapeHtml(v){return String(v??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));}
+function parseDelimited(text, delim){return text.replace(/^\uFEFF/,"").trim().split(/\r?\n/).filter(x=>x.trim()!=="").map(line=>line.split(delim).map(x=>x.trim()));}
+function chooseDelimiter(text){const first=(text.split(/\r?\n/)[0]||"");return (first.match(/\t/g)||[]).length >= (first.match(/,/g)||[]).length ? "\t" : ",";}
+function renderTable(rows, target, query=""){
+ if(!rows||!rows.length){$(target).innerHTML='<div class="empty">No hi ha dades per mostrar.</div>';return;}
+ const filtered=rows.filter(r=>r.join(" ").toLowerCase().includes(query.toLowerCase()));
+ if(!filtered.length){$(target).innerHTML='<div class="empty">No hi ha resultats per a aquesta cerca.</div>';return;}
+ const h=filtered[0], body=filtered.slice(1);
+ $(target).innerHTML='<table><thead><tr>'+h.map(x=>'<th>'+escapeHtml(x)+'</th>').join("")+'</tr></thead><tbody>'+body.map((r,i)=>'<tr class="'+(i<3?'toprow':'')+'">'+h.map((_,j)=>'<td>'+escapeHtml(r[j]||"")+'</td>').join("")+'</tr>').join("")+'</tbody></table>';
+}
+function setStatus(id,msg){const el=$(id);if(el)el.textContent=msg;}
+function setData(text,source){
+ const delim=chooseDelimiter(text); allRows=parseDelimited(text,delim); headers=allRows[0]||[]; loadedFrom=source;
+ $("#connectionBadge").textContent="Dades carregades";$("#connectionBadge").style.color="var(--green)";
+ $("#connectionMessage").textContent=`S'han llegit ${Math.max(0,allRows.length-1)} files i ${headers.length} columnes (${source}). La taula de sota mostra el contingut tal com arriba del full.`;
+ $("#rawTable").innerHTML='<div class="card"><div class="card-title"><h3>Vista prèvia de les dades importades</h3><small>'+Math.max(0,allRows.length-1)+' files</small></div><div id="rawInner" class="table-wrap"></div></div>';
+ renderTable(allRows,"#rawInner");
+ // Initial generic display until exact sheet structure is mapped
+ renderTable(allRows,"#homePoints");
+ renderTable(allRows,"#pointsTable",$("#pointSearch")?.value||"");
+ renderTable(allRows,"#participationsTable",$("#participationSearch")?.value||"");
+ setStatus("#pointStatus",`${Math.max(0,allRows.length-1)} files importades · estructura pendent de configurar`);
+ setStatus("#participationStatus",`${Math.max(0,allRows.length-1)} files importades · estructura pendent de configurar`);
+}
+async function loadSheet(){
+ $("#connectionBadge").textContent="Connectant…";$("#connectionMessage").textContent="Intentant llegir el TSV publicat de Google Sheets…";
+ try{
+  const response=await fetch(TSV_URL,{cache:"no-store"});
+  if(!response.ok)throw new Error("HTTP "+response.status);
+  const text=await response.text();
+  if(!text.trim()||text.includes("<!DOCTYPE html>"))throw new Error("La resposta no sembla un TSV");
+  setData(text,"Google Sheets");
+ }catch(e){
+  $("#connectionBadge").textContent="No connectat";$("#connectionBadge").style.color="var(--red)";
+  $("#connectionMessage").textContent="El navegador no ha pogut llegir automàticament el TSV (pot ser per permisos o CORS). Pots descarregar les dades com a TSV/CSV des de Google Sheets i importar-les aquí. La resta del disseny ja està preparada; per automatitzar tots els apartats caldrà mapar les columnes i les altres pestanyes.";
+ }
+}
+document.querySelectorAll("[data-tab]").forEach(b=>b.addEventListener("click",()=>showTab(b.dataset.tab)));
+document.querySelectorAll("[data-jump]").forEach(b=>b.addEventListener("click",()=>showTab(b.dataset.jump)));
+function showTab(tab){document.querySelectorAll(".data-panel").forEach(p=>p.classList.remove("active"));$("#panel-"+tab)?.classList.add("active");document.querySelectorAll("[data-tab]").forEach(b=>b.classList.toggle("active",b.dataset.tab===tab));window.scrollTo({top:0,behavior:"smooth"});}
+$("#pointSearch").addEventListener("input",e=>{if(allRows.length)renderTable(allRows,"#pointsTable",e.target.value)});
+$("#participationSearch").addEventListener("input",e=>{if(allRows.length)renderTable(allRows,"#participationsTable",e.target.value)});
+$("#reloadBtn").addEventListener("click",loadSheet);
+$("#fileInput").addEventListener("change",async e=>{const f=e.target.files?.[0];if(f)setData(await f.text(),f.name)});
+loadSheet();
+</script>
+</body></html>
